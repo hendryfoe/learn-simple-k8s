@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webservice
+  labels:
+    service: webservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: webservice
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        service: webservice
+    spec:
+      containers:
+      - name: webservice
+        image: learning/k8s-webservice:1.0.0
+        # imagePullPolicy: Always
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webservice
+spec:
+  # expose and make it accessible from the local machine
+  type: NodePort
+  selector:
+    service: webservice
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30100

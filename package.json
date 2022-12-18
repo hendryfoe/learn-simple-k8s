@@ -1,0 +1,19 @@
+{
+  "name": "learning-simple-k8s",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start-one": "node ./app-1.0.0/src/index.js",
+    "start-two": "node ./app-1.0.1/src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tester",
+  "license": "MIT",
+  "dependencies": {
+    "@godaddy/terminus": "^4.11.2",
+    "express": "^4.18.2"
+  }
+}
